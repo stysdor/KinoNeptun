@@ -158,7 +158,6 @@ namespace Cinema.Infrastructure.Repositories
             }
         }
 
-        #region Methods to add into program in the future
 
         /// <summary>
         /// Gets list of showing by custom date. It's made for finding showing playing in the custom day.
@@ -200,7 +199,7 @@ namespace Cinema.Infrastructure.Repositories
             {
                 db.Open();
                 showings = db.Query<Showing, Movie, Theatre, Showing>(
-                @"SELECT S.Id, S.ShowingDateTime, S.TheatreId, T.Id, T.TheatreName " +
+                @"SELECT * " +
                 @"FROM Showing AS S INNER JOIN Movie AS M ON S.MovieId = M.Id " +
                 @"INNER JOIN Theatre AS T ON S.TheatreId = T.Id " +
                 $"WHERE S.MovieId = {movieId};",
@@ -208,12 +207,11 @@ namespace Cinema.Infrastructure.Repositories
                     showing.MovieId = movie;
                     showing.TheatreId = theatre;
                     return showing;
-                }, splitOn: "TheatreId")
+                })
                 .Distinct()
                 .ToList();
             }
             return showings;
         }
-        #endregion
     }
 }

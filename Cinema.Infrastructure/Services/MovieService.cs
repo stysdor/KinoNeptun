@@ -29,6 +29,7 @@ namespace Cinema.Infrastructure.Services
         {
             _repository = new MovieRepository();
             _categoryRepository = new CategoryRepository();
+            _showingRepository = new ShowingRepository();
             _mapper = mapper;
         }
 
@@ -85,7 +86,7 @@ namespace Cinema.Infrastructure.Services
         public void Remove(int id)
         {
             var showings = _showingRepository.GetShowingsByMovie(id);
-            if ( showings == null)
+            if (showings == null)
                 _repository.Remove(id);
         }
     }
