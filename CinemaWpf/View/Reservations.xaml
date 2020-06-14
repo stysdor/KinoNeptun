@@ -1,0 +1,42 @@
+﻿<Page x:Class="CinemaWpf.View.Reservations"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CinemaWpf.View"
+      xmlns:ViewModel="clr-namespace:CinemaWpf.ViewModel"
+      mc:Ignorable="d" 
+      Height="650" Width="1040"
+      Title="Reservations">
+    <Page.DataContext>
+        <ViewModel:ReservationsViewModel />
+    </Page.DataContext>
+    <StackPanel HorizontalAlignment="Center">
+        <StackPanel Height="50">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Width="180" Height="35" HorizontalAlignment="Left" Command="{Binding AddReservation}">Nowa rezerwacja</Button>
+                <Button Grid.Column="1" Width="120"  HorizontalAlignment="Right" Command="{Binding Confirm}">Potwierdź</Button>
+                <Button Grid.Column="2" Width="120"  HorizontalAlignment="Right" Command="{Binding RemoveReservation}">Usuń</Button>
+            </Grid>
+        </StackPanel>
+        <ListView ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedReservation, Mode=TwoWay}" HorizontalAlignment="Center">
+            <ListView.View>
+                <GridView ColumnHeaderToolTip="Informacje o rezerwacjach" >
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Reservation.ShowingId}" Header="Id seansu" Width="Auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Reservation.RowSeatId}" Header="Id miejsca" Width="Auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Reservation.StatusString}" Header="Status" Width="Auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Customer.CustomerName}" Header="Imie" Width="Auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Customer.CustomerSurname}" Header="Nazwisko" Width="Auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Customer.Phone}" Header="Telefon" Width="Auto" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Customer.Email}" Header="Email" Width="Auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </StackPanel>
+</Page>

@@ -1,0 +1,79 @@
+﻿<Application x:Class="CinemaWpf.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CinemaWpf"
+             StartupUri="View/LoginView.xaml">
+    <Application.Resources>
+        <Style TargetType="Label" x:Key="error">
+            <Setter Property="Foreground" Value="Red" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        
+        <Style TargetType="TextBox">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderThickness" Value="0 0 0 1"></Setter>
+                                <Setter Property="BorderBrush" Value="#a70711"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderThickness" Value="1 1 1 1"></Setter>
+                                <Setter Property="BorderBrush" Value="#0a0a0a"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#d4d4dc" />
+            <Setter Property="Foreground" Value="#393f4d" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="#393f4d" />
+            <Setter Property="FontFamily" Value="Letter Gothic Std" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#d4d4dc" />
+            <Setter Property="FontFamily" Value="Letter Gothic Std" />
+        </Style>
+
+
+        <Style TargetType="ListView">
+            <Setter Property="Background" Value="#393f4d"/>
+            <Setter Property="Foreground" Value="#d4d4dc"/>
+            <Setter Property="FontFamily" Value="Letter Gothic Std" />
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Background" Value="#393f4d"/>
+            <Setter Property="Foreground" Value="#d4d4dc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Padding" Value="0,0,50,0"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        </Style>
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="FontFamily" Value="Letter Gothic Std" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="20" />
+            <Setter Property="Background" Value="#feda6a"/>
+            <Setter Property="Foreground" Value="#1d1e22"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+    </Application.Resources>
+</Application>
